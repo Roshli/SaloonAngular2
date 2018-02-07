@@ -8,7 +8,7 @@
     <label>Filter Customers :</label>
     <input type="text" [(ngModel)]="term" />
 
-
+<hr>
   <table CLASS="table table-striped">
     <thead>
     <th>Telephone Number</th>
@@ -34,54 +34,20 @@
 
 
   </table>
-
+  <hr>
+  <ul class="nav nav-pills">
+    <li class="nav-item" *ngFor="let p of pages; let i = index">
+      <a class="nav-link" href="" (click)="setPage(i,$event)">{{i}}</a>
+    </li>
+  </ul>
 </div>
+
 <!--
-  <div class="container">
-    <form>
-      <div class="form-group">
-        <label>Telephone Number</label>
-        <input type="text" (keyup)="onNameKeyUp($event)">
-      </div>
-      <button type="submit" class="btn btn-success" (click)="getCustomer()">View Customer</button>
-      <h1>{{num}}</h1>
-    </form>
-  </div>
-
-<div>
-
-  <table CLASS="table table-striped">
-    <thead>
-    <th>Telephone Number</th>
-    <th>Name</th>
-    <th>Age</th>
-    <th>Address</th>
-    <th>Email</th>
-    <th>Operation</th>
-    </thead>
-    <tbody>
-    <tr *ngFor="let customer of modle">
-     <td>{{customer.tpNumber}}</td>
-      <td>{{customer.name}}</td>
-      <td>{{customer.age}}</td>
-      <td>{{customer.address}}</td>
-      <td>{{customer.email}}</td>
-      <td>
-        <button class = "btn btn-danger">Delete</button>
-        <button class = "btn btn-primary"(click)="updateCustomer(formModle)">Edit</button>
-      </td>
-    </tr>
-    </tbody>
-
-
-  </table>
-</div>
-</div>
-
 <div>
   <h2>Customer</h2>
   {{ CurrentCustomer }}
-</div>-->
+</div>
+-->
 </div>
 
 

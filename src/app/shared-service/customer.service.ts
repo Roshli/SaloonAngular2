@@ -9,20 +9,16 @@ import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class CustomerService {
-  private baseUrl:string = 'http://localhost:8080/customer';
+  private baseUrl = 'http://localhost:8080/customer';
   private headers = new Headers({'Content-Type':'application/json'});
   private options = new RequestOptions({headers:this.headers});
   private customer:Customer;
   constructor(private _http:Http){}
 
-//  constructor() { }
-  viewCustomer(tpNumber:Number){
-    return this._http.get(this.baseUrl+'/'+tpNumber,this.options).map((response:Response)=>response.json()).catch(this.errorHandler)
-  }
 
-  viewCustomers()
+  viewCustomers(page:number)
   {
-    return this._http.get(this.baseUrl+'/Customers',this.options).map((response:Response)=>response.json()).catch(this.errorHandler)
+    return this._http.get(this.baseUrl+'/all?page='+page).map((response:Response)=>response.json()).catch(this.errorHandler);
   }
 
   insertCustomer(customer:Customer){

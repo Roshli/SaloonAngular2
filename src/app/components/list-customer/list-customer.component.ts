@@ -12,9 +12,10 @@ import { FilterPipe} from '../../filter.pipe';
 })
 export class ListCustomerComponent implements OnInit {
 
-  public modle:Customer[];
+  private page:number =0;
   public modle2:Customer[];
-  public formModle = new Customer();
+  private customers:Array<any>;
+  private pages:Array<number>;
 
 
 
@@ -28,21 +29,23 @@ export class ListCustomerComponent implements OnInit {
     this.tpNumber2 = event.target.value;
 
   }
+  setPage(i,event:any){
+
+    event.preventDefault();
+    this.page=i;
+    this.getCustomers();
+  }
 
   ngOnInit() {
 
-    //this.modle = [{tpNumber:1111,name:"Shenal", age:24, email:"sjdhf",address:"shdfi"}];
-    this._customerService.viewCustomers().subscribe((data:any[])=>{this.modle2= data; console.log(data)},(error)=>{console.log(error);})
-
-
+      this.getCustomers();
 
   }
-
-
-  getCustomer()
+  getCustomers()
   {
-    this._customerService.viewCustomer(this.tpNumber2).subscribe((data:any[])=>{this.modle= data},(error)=>{console.log(error);})
+    this._customerService.viewCustomers(this.page).subscribe(data=>{this.modle2=data['content'];this.pages = new Array(data['totalPages'])},(error)=>{console.log(error);})
   }
+
   updateCustomer(k)
   {
     //console.log(modle);
@@ -53,17 +56,10 @@ export class ListCustomerComponent implements OnInit {
 
 
   }
-  getCustomers()
-  {
 
+  /*
+ get CurrentCustomer(){
+    return JSON.stringify(this.modle2);
   }
-  form()
-  {
-    this._router.navigate(['/op']);
-  }
-
- /* get CurrentCustomer(){
-    return JSON.stringify(this.modle);
-  }*/
-
+*/
 }
